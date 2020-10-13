@@ -7,6 +7,8 @@
 /// <reference types="node"/>
 /// <reference types="webdriver"/>
 
+import { DesiredCapabilities } from 'webdriver';
+
 // See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/24419
 interface Element { }
 interface Node { }
@@ -60,10 +62,14 @@ declare namespace WebdriverIO {
     }
 
     interface ServiceLauncher {
-        launcher: function
+        launcher: (
+            options: Record<string, any>,
+            capabilities: DesiredCapabilities,
+            config: Config
+        ) => void
     }
 
-    type ServiceEntry = string | HookFunctions | [string, ServiceOption] | object | ServiceLauncher
+    type ServiceEntry = string | HookFunctions | [string, ServiceOption] | Record<string, Function> | ServiceLauncher
 
 
     interface Options {
@@ -588,7 +594,7 @@ declare namespace WebdriverIO {
             name: string,
             func: AddCommandFn<false>
         ): void;
-        
+
         /**
          * The `$$` command is a short way to call the [`findElements`](/docs/api/webdriver.html#findelements) command in order
          * to fetch multiple elements on the page similar to the `$$` command from the browser scope. The difference when calling
@@ -944,7 +950,7 @@ declare namespace WebdriverIO {
          */
         calls: Matches[];
 
-        
+
         /**
          * > This is a __beta__ feature. Please give us feedback and file [an issue](https://github.com/webdriverio/webdriverio/issues/new/choose) if certain scenarions don't work as expected!
          */
@@ -1028,7 +1034,7 @@ declare namespace WebdriverIO {
             name: string,
             func: (elementFetchingMethod: (selector: string) => any) => void
         ): void
-        
+
         /**
          * The `$$` command is a short way to call the [`findElements`](/docs/api/webdriver.html#findelements) command in order
          * to fetch multiple elements on the page. It returns an array with element results that will have an
