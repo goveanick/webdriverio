@@ -27,7 +27,7 @@ declare namespace WebDriver {
     type FirefoxLogLevels =
         'trace' | 'debug' | 'config' |
         'info' | 'warn' | 'error' | 'fatal';
-    type Timeouts = 'script' | 'pageLoad' | 'implicit';
+    export type Timeouts = Record<'script' | 'pageLoad' | 'implicit', number>;
     export type SameSiteOptions = 'Lax' | 'Strict';
 
     interface ProxyObject {
@@ -182,6 +182,7 @@ declare namespace WebDriver {
     }
 
     interface FirefoxOptions {
+        debuggerAddress: string
         binary?: string,
         args?: string[],
         profile?: string,
@@ -626,6 +627,7 @@ declare namespace WebDriver {
         isAndroid: boolean;
         isMobile: boolean;
         isIOS: boolean;
+        isSauce: boolean;
         sessionId: string;
     }
 

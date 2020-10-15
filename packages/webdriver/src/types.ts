@@ -163,12 +163,13 @@ export interface FirefoxLogObject {
 }
 
 export interface FirefoxOptions {
-    binary?: string,
-    args?: string[],
-    profile?: string,
-    log?: FirefoxLogObject,
+    debuggerAddress: string
+    binary?: string
+    args?: string[]
+    profile?: string
+    log?: FirefoxLogObject
     prefs?: {
-        [name: string]: string | number | boolean;
+        [name: string]: string | number | boolean
     }
 }
 
