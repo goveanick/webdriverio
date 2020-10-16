@@ -187,7 +187,7 @@ declare namespace WebdriverIO {
         execArgv?: string[];
     }
 
-    interface RemoteOptions extends WebDriver.Options, Omit<Options, 'capabilities'> { }
+    interface RemoteOptions extends WebDriver.Options, HookFunctions, Omit<Options, 'capabilities'> { }
 
     interface MultiRemoteOptions {
         [instanceName: string]: WebDriver.DesiredCapabilities;
